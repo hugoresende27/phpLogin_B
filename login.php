@@ -43,8 +43,14 @@
 
         <div id="box">
             <form method="POST" >
-                <input type="text" name="" id="">
-                <input type="senha" name="" id="">
+                <div style="font-size:20px;margin:10px; color:white">Login</div>
+
+                    <input type="text" name="user_name"><br><br>
+                    <input type="password" name="senha"><br><br>
+                
+
+                <input id="button" type="submit" value="Login"><br><br>
+                <a href="signup.php">Click to Sign up</a><br><br>
             </form>
         </div>
 </body>
