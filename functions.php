@@ -1,6 +1,6 @@
 <?php
 
-function check_login(){ //ESTA FUNÇÃO VAI VERIFICAR O LOGIN,/////////////////////
+function check_login($con){ //ESTA FUNÇÃO VAI VERIFICAR O LOGIN,/////////////////////
 
     if(isset($_SESSION['user_id'])){////////////////SE EXISTE SESSION 
         $id = $_SESSION['user_id']; //$id VAI RECEBER O VALOR DA CHAVE ['user_id']

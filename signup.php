@@ -3,8 +3,9 @@ session_start();
     include("connection.php");
     include("functions.php");
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){//se houver algum post
-        $un = $_POST['userName'];
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        //se houver algum post
+        $un = $_POST['user_name'];
         $pw = $_POST['senha'];
         print_r($_POST);
         if (!empty($un) && !empty($pw) && !is_numeric($un)){//se no post o nome e pass estiverem  correctos e noma é não numérico
@@ -12,10 +13,10 @@ session_start();
             $user_id = random_num(20);
             $query = "INSERT INTO users (userr_id,userName,senha) VALUES ('$user_id','$un','$pw')";
             mysqli_query($con,$query);
-            print_r($query);
-            print_r($con);
-            print_r($user_id);
-            //header ("location: login.php");
+            // print_r($query);
+            // print_r($con);
+            // print_r($user_id);
+            header ("location: login.php");
             die;
         }else {
             /////////REGISTO FALHOU////////
@@ -68,7 +69,7 @@ session_start();
             <form method="POST" >
                 <div style="font-size:20px;margin:10px; color:white">Sign up</div>
 
-                    <input  type="text" name="userName"><br><br>
+                    <input  type="text" name="user_name"><br><br>
                     <input  type="password" name="senha"><br><br>
                 
 

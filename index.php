@@ -21,6 +21,6 @@ session_start();
 
 
     <br>
-    Hello, Username
+    Hello, <?php echo $user_data['userName'];?>
 </body>
 </html>
