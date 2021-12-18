@@ -2,12 +2,16 @@
 session_start();
     include("connection.php");
     include("functions.php");
-    //print_r($_POST);
+    
+    
+    /*
     if($_SERVER['REQUEST_METHOD'] == "POST"){
+       
         //se houver algum post
         $un = $_POST['user_name'];
         $pw = $_POST['senha'];
-        //print_r($_POST);
+       
+        //
         if (!empty($un) && !empty($pw) && !is_numeric($un)){//se no post o nome e pass estiverem  correctos e noma é não numérico
             /////////LER NA DB//////////
             
@@ -15,24 +19,68 @@ session_start();
             $result = mysqli_query($con,$query);
             
             if ($result){
-                print_r($_SESSION);
+                
                 if ($result && mysqli_num_rows($result) > 0 ){//SE EXISTIR 1 RESULTADO
                     $user_data = mysqli_fetch_assoc($result);//FETCH ASSOC NO RESULT//Returns an associative array
                     
                     if($user_data['senha'] === $pw){
+                        
                         $_SESSION['userr_id'] = $user_data['userr_id'];
                         header ("location: index.php");
                         die;
                     }
                 }
             }
-            
+        
             echo "Wrong Login! Failed";
         }else {
+            print_r($_POST);
             /////////REGISTO FALHOU////////
             echo "Wrong Login! Failed";
         }
     }
+
+?>
+*/
+print_r($_SESSION);
+if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+        
+		//something was posted
+		$user_name = $_POST['user_name'];
+		$password = $_POST['senha'];
+        
+		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+		{
+           
+			//read from database
+			$query = "select * from users where userName = '$user_name' limit 1";
+			$result = mysqli_query($con, $query);
+
+			if($result)
+			{
+				if($result && mysqli_num_rows($result) > 0)
+				{
+
+					$user_data = mysqli_fetch_assoc($result);
+					
+					if($user_data['senha'] === $password)
+					{
+
+						$_SESSION['user_id'] = $user_data['user_id'];
+						header("Location: index.php");
+						die;
+					}
+				}
+			}
+			
+			echo "wrong username or password!";
+		}else
+        
+        
+			echo "wrong username or password!";
+		}
+	
 
 ?>
 
